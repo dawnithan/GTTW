@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GTTW</title>
+	<!-- Map CSS -->
+	<link rel="stylesheet" type="text/css" href="map.css">
+
+	<!-- Leaflet CSS + Leaflet JS -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+	
+	<!-- JQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- MovingMarker -->
+	<script type="text/javascript" src="MovingMarker.js"></script>
+	<script type="text/javascript" src="AnimatedMarker.js"></script>
+</head>
+<body>
+	
+<div id="mapid"></div>
+
+<script>
+var coordX = 53.153;
+var coordY = -5.367;
+
+var map = L.map('mapid').setView([coordX, coordY], 8);
+
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+	maxZoom: 18,
+	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+		'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+		'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+	id: 'mapbox.streets'
+}).addTo(map);
+
+var jonathanswift = [
+	[53.345786304843, -6.198263168334961],
+	[53.34373667284635, -6.198434829711914],
+	[53.34358294647466, -6.1502838134765625],
+	[53.33333327155682, -6.016387939453125],
+	[53.35628912245418, -5.58929443359375],
+	[53.36202615413913, -5.1580810546875],
+	[53.34481274192986, -4.71588134765625],
+	[53.332615702057396, -4.61322784423828],
+	[53.327079760170044, -4.609966278076172],
+	[53.31508275483128, -4.619064331054687],
+	[53.327079760170044, -4.609966278076172],
+	[53.332615702057396, -4.61322784423828],
+	[53.34481274192986, -4.71588134765625],
+	[53.36202615413913, -5.1580810546875],
+	[53.35628912245418, -5.58929443359375],
+	[53.33333327155682, -6.016387939453125],
+	[53.34358294647466, -6.1502838134765625],
+	[53.34373667284635, -6.198434829711914],
+	[53.345786304843, -6.198263168334961],];
+
+var jonathanswift_text = "Jonathan Swift (30 November 1667 \u2013 19 October 1745) was an Anglo-Irish satirist, essayist, political pamphleteer (first for the Whigs, then for the Tories), poet and cleric who became Dean of St Patrick\'s Cathedral, Dublin. Swift is remembered for works such as A Tale of a Tub (1704), An Argument Against Abolishing Christianity (1712), Gulliver\'s Travels (1726), and A Modest Proposal (1729). He is regarded by the Encyclop\u00E6dia Britannica as the foremost prose satirist in the English language, and is less well known for his poetry."
+
+// var jonathanSwiftMarker = L.Marker.movingMarker(jonathanswift, 60000, {loop: true}).addTo(map);
+L.polyline(jonathanswift, {color: 'red', dashArray: '20,15'}).addTo(map);
+// jonathanSwiftMarker.bindPopup('<b>Jonathan Swift</b><br>' + jonathanswift_text);
+// jonathanSwiftMarker.start();
+
+// https://api.myjson.com/bins/15p4yr - no values in 'properties'
+$.getJSON("https://api.myjson.com/bins/ji3j7", function(data){
+	L.geoJSON(data, {
+		style: { 
+			color: 'pink', 
+			weight: 3, 
+			opacity: 0.7 
+		},
+		onEachFeature: function(feature, layer) {
+			layer.bindPopup(feature.properties.name);
+			
+		}
+	}).addTo(map);
+})
+
+var animatedMarker = L.animatedMarker(jonathanswift.getLatLngs());
+map.addLayer(animatedMarker);
+
+</script>
+</body>
+</html>
