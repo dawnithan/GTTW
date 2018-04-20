@@ -40,31 +40,69 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
 var geojson = new L.geoJson(test_lines);
 geojson.addTo(map);
 
-var temp1 = [];
+var lineOne = [];
+var lineTwo = [];
+var lineThree = [];
+var lineFour = [];
+var coordinates;
+var len;
+
 var eachLayer = geojson.eachLayer(function(layer){
-	//var mudkips = layer. 
-	var coordinates = layer.feature.geometry.coordinates;
-	var len = coordinates.length;
-	var i = 0;
-	for (i; i<len; i++){
-		var lat = coordinates[i][1],
-	    	lon = coordinates[i][0];
-		// reverse order of lon, lat for L.polyline
-		temp1.push([lat, lon]);
+	if(layer.feature.properties.name == "line1") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		for (var i = 0; i < len; i++){
+			var lat = coordinates[i][1],
+		    	lon = coordinates[i][0];
+			// reverse order of lon, lat for L.polyline
+			lineOne.push([lat, lon]);
+		}
+	}
+	if(layer.feature.properties.name == "line2") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		for (var i = 0; i < len; i++){
+			var lat = coordinates[i][1],
+		    	lon = coordinates[i][0];
+			// reverse order of lon, lat for L.polyline
+			lineTwo.push([lat, lon]);
+		}
+	}
+	if(layer.feature.properties.name == "line3") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		for (var i = 0; i < len; i++){
+			var lat = coordinates[i][1],
+		    	lon = coordinates[i][0];
+			// reverse order of lon, lat for L.polyline
+			lineThree.push([lat, lon]);
+		}
+	}
+	if(layer.feature.properties.name == "235113472") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		for (var i = 0; i < len; i++){
+			var lat = coordinates[i][1],
+		    	lon = coordinates[i][0];
+			// reverse order of lon, lat for L.polyline
+			lineFour.push([lat, lon]);
+		}
 	}
 });
 
-var line = new L.polyline(temp1);
-// 	animatedMarker = L.animatedMarker(line.getLatLngs(), {
-// 	autoStart: true,
-// 	distance: 500,
-// 	interval: 1000
-// });
+var line1 = new L.polyline(lineOne);
+var line2 = new L.polyline(lineTwo);
+var line3 = new L.polyline(lineThree);
+var singapore_235113472 = new L.polyline(lineFour)
 
-var moving = L.Marker.movingMarker(line.getLatLngs(), 60000).addTo(map);
-moving.start();
-
-//map.addLayer(animatedMarker);
+var movingOne = L.Marker.movingMarker(line1.getLatLngs(), 60000).addTo(map);
+movingOne.start();
+var movingTwo = L.Marker.movingMarker(line2.getLatLngs(), 60000).addTo(map);
+movingTwo.start();
+var movingThree = L.Marker.movingMarker(line3.getLatLngs(), 60000).addTo(map);
+movingThree.start();
+var movingFour = L.Marker.movingMarker(singapore_235113472.getLatLngs(), 60000).addTo(map);
+movingFour.start();
 
 var jonathanswift = [
 	[53.345786304843, -6.198263168334961],
