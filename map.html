@@ -78,22 +78,22 @@ var eachLayer = geojson.eachLayer(function(layer){
 			lineThree.push([lat, lon]);
 		}
 	}
-	// if(layer.feature.properties.name == "235113472") {
-	// 	coordinates = layer.feature.geometry.coordinates;
-	// 	len = coordinates.length;
-	// 	for (var i = 0; i < len; i++){
-	// 		var lat = coordinates[i][1],
-	// 	    	lon = coordinates[i][0];
-	// 		// reverse order of lon, lat for L.polyline
-	// 		lineFour.push([lat, lon]);
-	// 	}
-	// }
+	if(layer.feature.properties.name == "235113472") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		for (var i = 0; i < len; i++){
+			var lat = coordinates[i][1],
+		    	lon = coordinates[i][0];
+			// reverse order of lon, lat for L.polyline
+			lineFour.push([lat, lon]);
+		}
+	}
 });
 
 var line1 = new L.polyline(lineOne);
 var line2 = new L.polyline(lineTwo);
 var line3 = new L.polyline(lineThree);
-// var singapore_235113472 = new L.polyline(lineFour)
+var singapore_235113472 = new L.polyline(lineFour)
 
 var movingOne = L.Marker.movingMarker(line1.getLatLngs(), 60000).addTo(map);
 movingOne.start();
@@ -101,8 +101,9 @@ var movingTwo = L.Marker.movingMarker(line2.getLatLngs(), 60000).addTo(map);
 movingTwo.start();
 var movingThree = L.Marker.movingMarker(line3.getLatLngs(), 60000).addTo(map);
 movingThree.start();
-// var movingFour = L.Marker.movingMarker(singapore_235113472.getLatLngs(), 60000).addTo(map);
-// movingFour.start();
+var movingFour = L.Marker.movingMarker(singapore_235113472.getLatLngs(), 60000).addTo(map);
+movingFour.bindPopup("<b>GOLDEN PRINCESS</b><br>Golden Princess is a Grand-class cruise ship with Princess Cruises that entered service in 2001. She is the sister ship of Grand Princess and Star Princess. She measures 109,000 gross tons and carries 2,600 passengers (double occupancy) plus 1,100 crew members. From 2009 to September 2015, she primarily operated on the Hawaii, and the West Coast of the United States. Golden was constructed in Italy by Fincantieri and is Bermudan flagged.");
+movingFour.start();
 
 var jonathanswift = [
 	[53.345786304843, -6.198263168334961],
