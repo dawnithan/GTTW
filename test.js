@@ -162,17 +162,14 @@ var test_lines = {
 				]
 			}
 		},
-		{
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "235113472"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
+    	{
+      		"type": "Feature",
+      		"properties": {
+        	"name": "235113472"
+      	},
+      		"geometry": {
+        	"type": "LineString",
+        	"coordinates": [
           [
             107.0971,
             9.858008
@@ -216,9 +213,9 @@ var test_lines = {
           [
             103.8965,
             1.2101
-          			]
-        		]
-      		}
-    	}
+          ]
+        ]
+      }
+    }
 	]
 };
