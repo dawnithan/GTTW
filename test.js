@@ -488,7 +488,7 @@ var test_lines = {
     {
       "type":"Feature",
       "properties":{
-        "name":"390847000"
+        "name":"309847000"
       },
       "geometry":{
         "type":"LineString",
