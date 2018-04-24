@@ -18,14 +18,23 @@
 	<!-- MovingMarker -->
 	<script type="text/javascript" src="MovingMarker.js"></script>
 	<script type="text/javascript" src="AnimatedMarker.js"></script>
+
+	<!-- MarkerCluster -->
+	<script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css"/>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css"/>
 </head>
 <body>
 	
 <div id="mapid"></div>
 
 <script>
-var coordX = 53.153;
-var coordY = -5.367;
+// singapore
+var coordX = 1.1691; 
+var coordY = 103.7552; 
+// ireland
+// var coordX = 53.153; 
+// var coordY = -5.367; 
 
 var map = L.map('mapid').setView([coordX, coordY], 8);
 
@@ -40,70 +49,189 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
 var geojson = new L.geoJson(test_lines);
 geojson.addTo(map);
 
-var lineOne = [];
-var lineTwo = [];
-var lineThree = [];
-var lineFour = [];
 var coordinates;
 var len;
 
+// test coordinate arrays
+var lineOne = [];
+var lineTwo = [];
+var lineThree = [];
+
+// singapore coordinate arrays
+var line4 = [];
+var line5 = [];
+var line6 = [];
+var line7 = [];
+var line8 = [];
+var line9 = [];
+var line10 = [];
+var line11 = [];
+var line12 = [];
+var line13 = [];
+var line14 = [];
+var line15 = [];
+var line16 = [];
+var line17 = [];
+
 var eachLayer = geojson.eachLayer(function(layer){
+	// test lines
 	if(layer.feature.properties.name == "line1") {
 		coordinates = layer.feature.geometry.coordinates;
 		len = coordinates.length;
-		for (var i = 0; i < len; i++){
-			var lat = coordinates[i][1],
-		    	lon = coordinates[i][0];
-			// reverse order of lon, lat for L.polyline
-			lineOne.push([lat, lon]);
-		}
+		convertCoords(coordinates, len, lineOne);
 	}
 	if(layer.feature.properties.name == "line2") {
 		coordinates = layer.feature.geometry.coordinates;
 		len = coordinates.length;
-		for (var i = 0; i < len; i++){
-			var lat = coordinates[i][1],
-		    	lon = coordinates[i][0];
-			// reverse order of lon, lat for L.polyline
-			lineTwo.push([lat, lon]);
-		}
+		convertCoords(coordinates, len, lineTwo);
 	}
 	if(layer.feature.properties.name == "line3") {
 		coordinates = layer.feature.geometry.coordinates;
 		len = coordinates.length;
-		for (var i = 0; i < len; i++){
-			var lat = coordinates[i][1],
-		    	lon = coordinates[i][0];
-			// reverse order of lon, lat for L.polyline
-			lineThree.push([lat, lon]);
-		}
+		convertCoords(coordinates, len, lineThree);
 	}
+	// singapore
 	if(layer.feature.properties.name == "235113472") {
 		coordinates = layer.feature.geometry.coordinates;
 		len = coordinates.length;
-		for (var i = 0; i < len; i++){
-			var lat = coordinates[i][1],
-		    	lon = coordinates[i][0];
-			// reverse order of lon, lat for L.polyline
-			lineFour.push([lat, lon]);
-		}
+		convertCoords(coordinates, len, line4);
+	}
+	if(layer.feature.properties.name == "246472000") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		convertCoords(coordinates, len, line5);
+	}
+	if(layer.feature.properties.name == "248161000") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		convertCoords(coordinates, len, line6);
+	}
+	if(layer.feature.properties.name == "253422000") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		convertCoords(coordinates, len, line7);
+	}
+	if(layer.feature.properties.name == "309847000") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		convertCoords(coordinates, len, line8);
+	}
+	if(layer.feature.properties.name == "311000065") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		convertCoords(coordinates, len, line9);
+	}
+	if(layer.feature.properties.name == "353065000") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		convertCoords(coordinates, len, line10);
+	}
+	if(layer.feature.properties.name == "354363000") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		convertCoords(coordinates, len, line11);
+	}
+	if(layer.feature.properties.name == "218412000") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		convertCoords(coordinates, len, line12);
+	}
+	if(layer.feature.properties.name == "533130592") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		convertCoords(coordinates, len, line13);
+	}
+	if(layer.feature.properties.name == "564886000") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		convertCoords(coordinates, len, line14);
+	}
+	if(layer.feature.properties.name == "566709000") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		convertCoords(coordinates, len, line15);
+	}
+	if(layer.feature.properties.name == "576392000") {
+		coordinates = layer.feature.geometry.coordinates;
+		len = coordinates.length;
+		convertCoords(coordinates, len, line16);
 	}
 });
 
+function convertCoords(coordinates, len, coordArray) {
+	for (var i = 0; i < len; i++){
+			var lat = coordinates[i][1],
+		    	lon = coordinates[i][0];
+			// reverse order of lon, lat for L.polyline
+			coordArray.push([lat, lon]);
+		}
+}
+
+// test lines
 var line1 = new L.polyline(lineOne);
 var line2 = new L.polyline(lineTwo);
 var line3 = new L.polyline(lineThree);
-var singapore_235113472 = new L.polyline(lineFour)
 
-var movingOne = L.Marker.movingMarker(line1.getLatLngs(), 60000).addTo(map);
-movingOne.start();
-var movingTwo = L.Marker.movingMarker(line2.getLatLngs(), 60000).addTo(map);
-movingTwo.start();
-var movingThree = L.Marker.movingMarker(line3.getLatLngs(), 60000).addTo(map);
-movingThree.start();
-var movingFour = L.Marker.movingMarker(singapore_235113472.getLatLngs(), 60000).addTo(map);
-movingFour.bindPopup("<b>GOLDEN PRINCESS</b><br>Golden Princess is a Grand-class cruise ship with Princess Cruises that entered service in 2001. She is the sister ship of Grand Princess and Star Princess. She measures 109,000 gross tons and carries 2,600 passengers (double occupancy) plus 1,100 crew members. From 2009 to September 2015, she primarily operated on the Hawaii, and the West Coast of the United States. Golden was constructed in Italy by Fincantieri and is Bermudan flagged.");
-movingFour.start();
+var moving1 = L.Marker.movingMarker(line1.getLatLngs(), 60000).addTo(map);
+var moving2 = L.Marker.movingMarker(line2.getLatLngs(), 60000).addTo(map);
+var moving3 = L.Marker.movingMarker(line3.getLatLngs(), 60000).addTo(map);
+
+moving1.start();
+moving2.start();
+moving3.start();
+
+// singapore
+var singapore1 = new L.polyline(line4);
+var singapore2 = new L.polyline(line5);
+var singapore3 = new L.polyline(line6);
+var singapore4 = new L.polyline(line7);
+var singapore5 = new L.polyline(line8);
+var singapore6 = new L.polyline(line9);
+var singapore7 = new L.polyline(line10);
+var singapore8 = new L.polyline(line11);
+var singapore9 = new L.polyline(line12);
+var singapore10 = new L.polyline(line13);
+var singapore11 = new L.polyline(line14);
+var singapore12 = new L.polyline(line15);
+var singapore13 = new L.polyline(line16);
+var singapore14 = new L.polyline(line17);
+
+var singMove1 = L.Marker.movingMarker(singapore1.getLatLngs(), 60000).addTo(map);
+var singMove2 = L.Marker.movingMarker(singapore2.getLatLngs(), 60000).addTo(map);
+var singMove3 = L.Marker.movingMarker(singapore3.getLatLngs(), 60000).addTo(map);
+var singMove4 = L.Marker.movingMarker(singapore4.getLatLngs(), 60000).addTo(map);
+var singMove5 = L.Marker.movingMarker(singapore5.getLatLngs(), 60000).addTo(map);
+var singMove6 = L.Marker.movingMarker(singapore6.getLatLngs(), 60000).addTo(map);
+var singMove7 = L.Marker.movingMarker(singapore7.getLatLngs(), 60000).addTo(map);
+var singMove8 = L.Marker.movingMarker(singapore8.getLatLngs(), 60000).addTo(map);
+var singMove9 = L.Marker.movingMarker(singapore9.getLatLngs(), 60000).addTo(map);
+var singMove10 = L.Marker.movingMarker(singapore10.getLatLngs(), 60000).addTo(map);
+var singMove11 = L.Marker.movingMarker(singapore11.getLatLngs(), 60000).addTo(map);
+var singMove12 = L.Marker.movingMarker(singapore12.getLatLngs(), 60000).addTo(map);
+var singMove13 = L.Marker.movingMarker(singapore13.getLatLngs(), 60000).addTo(map);
+
+singMove1.bindPopup("<b>GOLDEN PRINCESS</b><br>Golden Princess is a Grand-class cruise ship with Princess Cruises that entered service in 2001. She is the sister ship of Grand Princess and Star Princess. She measures 109,000 gross tons and carries 2,600 passengers (double occupancy) plus 1,100 crew members. From 2009 to September 2015, she primarily operated on the Hawaii, and the West Coast of the United States. Golden was constructed in Italy by Fincantieri and is Bermudan flagged.");
+
+singMove1.start();
+singMove2.start();
+singMove3.start();
+singMove4.start();
+singMove5.start();
+singMove6.start();
+singMove7.start();
+singMove8.start();
+singMove8.start();
+singMove9.start();
+singMove10.start();
+singMove11.start();
+singMove12.start();
+singMove13.start();
+
+// cluster?????????????? -> no, this is bad
+
+// var testMarkers = L.markerClusterGroup();
+// testMarkers.addLayer(moving1,moving2,moving3);
+// map.addLayer(testMarkers);
 
 var jonathanswift = [
 	[53.345786304843, -6.198263168334961],
