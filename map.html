@@ -36,9 +36,12 @@ var coordY = 103.7552;
 // var coordX = 53.153; 
 // var coordY = -5.367; 
 
-var map = L.map('mapid').setView([coordX, coordY], 8);
+var map = L.map('mapid', {
+	maxZoom: 13,
+	minZoom: 3
+}).setView([coordX, coordY], 8);
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+L.tileLayer('https://api.mapbox.com/styles/v1/dawnithan/cjgf7dw7600302so7cs1y3ujp/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGF3bml0aGFuIiwiYSI6ImNqY3Jya3Z1bjAzMWgzMHQ2Y3ZrZTRwNGcifQ.VHnoDBalt2G9wMx-SyX-4g', {
 	maxZoom: 18,
 	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 		'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -46,7 +49,26 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
 	id: 'mapbox.streets'
 }).addTo(map);
 
-var geojson = new L.geoJson(test_lines);
+var customIcon = L.Icon.extend({
+	options: {
+		iconUrl: 'boat.png',
+		iconSize: [32, 37],
+		iconAnchor: [16, 34],
+		popupAnchor: [0, -30]
+	}
+})
+
+var boatIcon = new customIcon();
+
+var myStyle = {
+    "color": "red",
+    "weight": 5,
+    "opacity": 0.65 // 0.00 = invis
+};
+
+var geojson = new L.geoJson(test_lines, {
+	style: myStyle
+});
 geojson.addTo(map);
 
 var coordinates;
@@ -73,98 +95,75 @@ var line15 = [];
 var line16 = [];
 var line17 = [];
 
+// busan
+var line18 = [];
+var line19 = [];
+var line20 = [];
+var line21 = [];
+var line22 = [];
+var line23 = [];
+var line24 = [];
+var line25 = [];
+var line26 = [];
+var line27 = [];
+var line28 = [];
+var line29 = [];
+
 var eachLayer = geojson.eachLayer(function(layer){
+
+	coordinates = layer.feature.geometry.coordinates;
+	len = coordinates.length;
+
 	// test lines
-	if(layer.feature.properties.name == "line1") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, lineOne);
-	}
-	if(layer.feature.properties.name == "line2") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, lineTwo);
-	}
-	if(layer.feature.properties.name == "line3") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, lineThree);
-	}
+	if(layer.feature.properties.name == "line1") convertCoords(coordinates, len, lineOne);
+	if(layer.feature.properties.name == "line2") convertCoords(coordinates, len, lineTwo);
+	if(layer.feature.properties.name == "line3") convertCoords(coordinates, len, lineThree);
+
 	// singapore
-	if(layer.feature.properties.name == "235113472") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, line4);
-	}
-	if(layer.feature.properties.name == "246472000") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, line5);
-	}
-	if(layer.feature.properties.name == "248161000") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, line6);
-	}
-	if(layer.feature.properties.name == "253422000") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, line7);
-	}
-	if(layer.feature.properties.name == "309847000") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, line8);
-	}
-	if(layer.feature.properties.name == "311000065") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, line9);
-	}
-	if(layer.feature.properties.name == "353065000") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, line10);
-	}
-	if(layer.feature.properties.name == "354363000") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, line11);
-	}
-	if(layer.feature.properties.name == "218412000") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, line12);
-	}
-	if(layer.feature.properties.name == "533130592") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, line13);
-	}
-	if(layer.feature.properties.name == "564886000") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, line14);
-	}
-	if(layer.feature.properties.name == "566709000") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, line15);
-	}
-	if(layer.feature.properties.name == "576392000") {
-		coordinates = layer.feature.geometry.coordinates;
-		len = coordinates.length;
-		convertCoords(coordinates, len, line16);
-	}
+	if(layer.feature.properties.name == "235113472") convertCoords(coordinates, len, line4);
+	if(layer.feature.properties.name == "246472000") convertCoords(coordinates, len, line5);
+	if(layer.feature.properties.name == "248161000") convertCoords(coordinates, len, line6);
+	if(layer.feature.properties.name == "253422000") convertCoords(coordinates, len, line7);
+	if(layer.feature.properties.name == "309847000") convertCoords(coordinates, len, line8);
+	if(layer.feature.properties.name == "311000065") convertCoords(coordinates, len, line9);
+	if(layer.feature.properties.name == "353065000") convertCoords(coordinates, len, line10);
+	if(layer.feature.properties.name == "354363000") convertCoords(coordinates, len, line11);
+	if(layer.feature.properties.name == "218412000") convertCoords(coordinates, len, line12);
+	if(layer.feature.properties.name == "533130592") convertCoords(coordinates, len, line13);
+	if(layer.feature.properties.name == "564886000") convertCoords(coordinates, len, line14);
+	if(layer.feature.properties.name == "566709000") convertCoords(coordinates, len, line15);
+	if(layer.feature.properties.name == "576392000") convertCoords(coordinates, len, line16);
+	//TODO line 17 because IM LAZY
+
+	// busan
+	if(layer.feature.properties.name == "229657000") convertCoords(coordinates, len, line18);
+	if(layer.feature.properties.name == "236685000") convertCoords(coordinates, len, line19);
+	if(layer.feature.properties.name == "259953000") convertCoords(coordinates, len, line20);
+	if(layer.feature.properties.name == "273390170") convertCoords(coordinates, len, line21);
+	if(layer.feature.properties.name == "273512400") convertCoords(coordinates, len, line22);
+	if(layer.feature.properties.name == "440280000") convertCoords(coordinates, len, line23);
+	if(layer.feature.properties.name == "440368000") convertCoords(coordinates, len, line24);
+	if(layer.feature.properties.name == "440473000") convertCoords(coordinates, len, line25);
+	if(layer.feature.properties.name == "440493000") convertCoords(coordinates, len, line26);
+	if(layer.feature.properties.name == "441246000") convertCoords(coordinates, len, line27);
+	if(layer.feature.properties.name == "477787000") convertCoords(coordinates, len, line28);
+	if(layer.feature.properties.name == "538007547") convertCoords(coordinates, len, line29);
 });
 
 function convertCoords(coordinates, len, coordArray) {
-	for (var i = 0; i < len; i++){
-			var lat = coordinates[i][1],
-		    	lon = coordinates[i][0];
-			// reverse order of lon, lat for L.polyline
-			coordArray.push([lat, lon]);
-		}
+	// forward
+	for (var i = 0; i < len; i++) {
+		var lat = coordinates[i][1],
+		    lon = coordinates[i][0];
+		// reverse order of lon, lat for L.polyline
+		coordArray.push([lat, lon]);
+	}
+	// reverse
+	for (var j = len-1; j > 0; j--) {
+		lat = coordinates[j][1];
+		lon = coordinates[j][0];
+		coordArray.push([lat,lon]);
+	}
 }
 
 // test lines
@@ -172,13 +171,9 @@ var line1 = new L.polyline(lineOne);
 var line2 = new L.polyline(lineTwo);
 var line3 = new L.polyline(lineThree);
 
-var moving1 = L.Marker.movingMarker(line1.getLatLngs(), 60000).addTo(map);
-var moving2 = L.Marker.movingMarker(line2.getLatLngs(), 60000).addTo(map);
-var moving3 = L.Marker.movingMarker(line3.getLatLngs(), 60000).addTo(map);
-
-moving1.start();
-moving2.start();
-moving3.start();
+var moving1 = L.Marker.movingMarker(line1.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var moving2 = L.Marker.movingMarker(line2.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var moving3 = L.Marker.movingMarker(line3.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
 
 // singapore
 var singapore1 = new L.polyline(line4);
@@ -196,41 +191,53 @@ var singapore12 = new L.polyline(line15);
 var singapore13 = new L.polyline(line16);
 var singapore14 = new L.polyline(line17);
 
-var singMove1 = L.Marker.movingMarker(singapore1.getLatLngs(), 60000).addTo(map);
-var singMove2 = L.Marker.movingMarker(singapore2.getLatLngs(), 60000).addTo(map);
-var singMove3 = L.Marker.movingMarker(singapore3.getLatLngs(), 60000).addTo(map);
-var singMove4 = L.Marker.movingMarker(singapore4.getLatLngs(), 60000).addTo(map);
-var singMove5 = L.Marker.movingMarker(singapore5.getLatLngs(), 60000).addTo(map);
-var singMove6 = L.Marker.movingMarker(singapore6.getLatLngs(), 60000).addTo(map);
-var singMove7 = L.Marker.movingMarker(singapore7.getLatLngs(), 60000).addTo(map);
-var singMove8 = L.Marker.movingMarker(singapore8.getLatLngs(), 60000).addTo(map);
-var singMove9 = L.Marker.movingMarker(singapore9.getLatLngs(), 60000).addTo(map);
-var singMove10 = L.Marker.movingMarker(singapore10.getLatLngs(), 60000).addTo(map);
-var singMove11 = L.Marker.movingMarker(singapore11.getLatLngs(), 60000).addTo(map);
-var singMove12 = L.Marker.movingMarker(singapore12.getLatLngs(), 60000).addTo(map);
-var singMove13 = L.Marker.movingMarker(singapore13.getLatLngs(), 60000).addTo(map);
+// busan
+var busan1 = new L.polyline(line18);
+var busan2 = new L.polyline(line19);
+var busan3 = new L.polyline(line20);
+var busan4 = new L.polyline(line21);
+var busan5 = new L.polyline(line22);
+var busan6 = new L.polyline(line23);
+var busan7 = new L.polyline(line24);
+var busan8 = new L.polyline(line25);
+var busan9 = new L.polyline(line26);
+var busan10 = new L.polyline(line27);
+var busan11 = new L.polyline(line28);
+var busan12 = new L.polyline(line29);
 
-singMove1.bindPopup("<b>GOLDEN PRINCESS</b><br>Golden Princess is a Grand-class cruise ship with Princess Cruises that entered service in 2001. She is the sister ship of Grand Princess and Star Princess. She measures 109,000 gross tons and carries 2,600 passengers (double occupancy) plus 1,100 crew members. From 2009 to September 2015, she primarily operated on the Hawaii, and the West Coast of the United States. Golden was constructed in Italy by Fincantieri and is Bermudan flagged.");
+var singMove1 = L.Marker.movingMarker(singapore1.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map);
+var singMove2 = L.Marker.movingMarker(singapore2.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var singMove3 = L.Marker.movingMarker(singapore3.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var singMove4 = L.Marker.movingMarker(singapore4.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var singMove5 = L.Marker.movingMarker(singapore5.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var singMove6 = L.Marker.movingMarker(singapore6.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var singMove7 = L.Marker.movingMarker(singapore7.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var singMove8 = L.Marker.movingMarker(singapore8.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var singMove9 = L.Marker.movingMarker(singapore9.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var singMove10 = L.Marker.movingMarker(singapore10.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var singMove11 = L.Marker.movingMarker(singapore11.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var singMove12 = L.Marker.movingMarker(singapore12.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var singMove13 = L.Marker.movingMarker(singapore13.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
 
-singMove1.start();
-singMove2.start();
-singMove3.start();
-singMove4.start();
-singMove5.start();
-singMove6.start();
-singMove7.start();
-singMove8.start();
-singMove8.start();
-singMove9.start();
-singMove10.start();
-singMove11.start();
-singMove12.start();
-singMove13.start();
+singMove1.bindPopup("<b>GOLDEN PRINCESS</b><br>Golden Princess is a Grand-class cruise ship with Princess Cruises that entered service in 2001. She is the sister ship of Grand Princess and Star Princess. She measures 109,000 gross tons and carries 2,600 passengers (double occupancy) plus 1,100 crew members. From 2009 to September 2015, she primarily operated on the Hawaii, and the West Coast of the United States. Golden was constructed in Italy by Fincantieri and is Bermudan flagged.").start();
 
-// cluster?????????????? -> no, this is bad
+var busan1 = L.Marker.movingMarker(busan1.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var busan2 = L.Marker.movingMarker(busan2.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var busan3 = L.Marker.movingMarker(busan3.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var busan4 = L.Marker.movingMarker(busan4.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var busan5 = L.Marker.movingMarker(busan5.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var busan6 = L.Marker.movingMarker(busan6.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var busan7 = L.Marker.movingMarker(busan7.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+// var busan8 = L.Marker.movingMarker(busan8.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start(); <-- FIXME
+var busan9 = L.Marker.movingMarker(busan9.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var busan10 = L.Marker.movingMarker(busan10.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var busan11 = L.Marker.movingMarker(busan11.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+var busan12 = L.Marker.movingMarker(busan12.getLatLngs(), 60000, {loop:true}).setIcon(boatIcon).addTo(map).start();
+
+// cluster?????????????? -> no, this is very bad. really bad!!
 
 // var testMarkers = L.markerClusterGroup();
-// testMarkers.addLayer(moving1,moving2,moving3);
+// testMarkers.addLayer(singMove1);
 // map.addLayer(testMarkers);
 
 var jonathanswift = [
@@ -254,7 +261,7 @@ var jonathanswift = [
 	[53.34373667284635, -6.198434829711914],
 	[53.345786304843, -6.198263168334961],];
 var jonathanswift_text = "Jonathan Swift (30 November 1667 \u2013 19 October 1745) was an Anglo-Irish satirist, essayist, political pamphleteer (first for the Whigs, then for the Tories), poet and cleric who became Dean of St Patrick\'s Cathedral, Dublin. Swift is remembered for works such as A Tale of a Tub (1704), An Argument Against Abolishing Christianity (1712), Gulliver\'s Travels (1726), and A Modest Proposal (1729). He is regarded by the Encyclop\u00E6dia Britannica as the foremost prose satirist in the English language, and is less well known for his poetry."
-var jonathanSwiftMarker = L.Marker.movingMarker(jonathanswift, 60000, {loop: true}).addTo(map);
+var jonathanSwiftMarker = L.Marker.movingMarker(jonathanswift, 60000, {loop: true}).setIcon(boatIcon).addTo(map);
 L.polyline(jonathanswift, {color: 'red', dashArray: '20,15'}).addTo(map);
 jonathanSwiftMarker.bindPopup('<b>Jonathan Swift</b><br>' + jonathanswift_text);
 jonathanSwiftMarker.start();
