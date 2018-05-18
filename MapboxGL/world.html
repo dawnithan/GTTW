@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Gateway to the World</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <!-- MapBox things -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="stylesheet" type="text/css" href="world.css"> 
+</head>
+<body>
+
+<div id="map"></div>
+<div class='map-overlay top'>
+    <div class='map-overlay-inner'>
+        <fieldset>
+            <label>Menu</label>
+            <select onchange="location = this.options[this.selectedIndex].value; + '.html'" id='layer' name='layer'>
+            	<option value="">Select location...</option>
+                <option value='arhaus.html'>Arhaus</option>
+                <option value='hamburg.html'>Hamburg</option>
+            </select>
+        </fieldset>
+    </div>
+</div>
+
+<script src="ireland-data.js" type="text/javascript"></script>
+<script src="bundle.js" type="text/javascript"></script>
+
+</body>
+</html>
