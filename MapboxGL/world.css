@@ -12,7 +12,7 @@ body {
 }
 
 .map-overlay {
-    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font: 16px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     position: absolute;
     width: 200px;
     top: 0;
