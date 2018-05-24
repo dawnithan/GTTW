@@ -4,6 +4,48 @@ body {
 	background-color: #464a59 
 }
 
+option {
+	color: #f2f2f2;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.color1 {
+	background-color: rgba(199, 70, 68, 255);
+}
+.color2 {
+	background-color: rgba(156, 64, 106, 255);
+}
+.color3 {
+	background-color: rgba(107, 120, 78, 255);
+}
+.color4 {
+	background-color: rgba(208, 183, 113, 255);
+}
+.color5 {
+	background-color: rgba(138, 119, 190, 255);
+}
+.color6 {
+	background-color: rgba(91, 167, 98, 255);
+}
+.color7 {
+	background-color: rgba(198, 112, 25, 255);
+}
+.color8 {
+	background-color: rgba(125, 167, 189, 255);
+}
+.color9 {
+	background-color: rgba(83, 133, 67, 255);
+}
+.color10 {
+	background-color: rgba(189, 103, 39, 255);
+}
+.color11 {
+	background-color: rgba(187, 180, 85, 255);
+}
+.color12 {
+	background-color: rgba(180, 73, 71, 255);
+}
+
 #map { 
 	position: absolute; 
 	top: 0; 
@@ -17,7 +59,7 @@ body {
     width: 200px;
     top: 0;
     left: 0;
-    opacity: 0.2;
+    opacity: 0.4;
     transition: opacity 0.2s;
   	-webkit-transition: opacity 0.2s;
     padding: 10px;
